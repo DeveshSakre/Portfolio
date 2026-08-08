@@ -1,13 +1,37 @@
+import { useEffect, useState } from "react";
 import "./styles/About.css";
 
+const ROTATING_PHRASES = [
+  "building meaningful software.",
+  "Android engineering.",
+  "AI-powered systems.",
+  "full-stack development.",
+];
+
 const About = () => {
+  const [index, setIndex] = useState(0);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setIndex((prev) => (prev + 1) % ROTATING_PHRASES.length);
+    }, 3000);
+    return () => clearInterval(timer);
+  }, []);
+
+  const currentText = ROTATING_PHRASES[index] ?? ROTATING_PHRASES[0];
+
   return (
     <div className="about-section" id="about">
       <div className="about-container section-container">
         <div className="section-tag">About Me</div>
         
         <h2 className="about-heading">
-          Driven by passion for <span className="text-highlight">building real-world software</span>.
+          <span className="about-title-prefix">Driven by passion for</span>
+          <span className="about-title-rotating-wrapper">
+            <span key={index} className="text-highlight about-title-rotating">
+              {currentText}
+            </span>
+          </span>
         </h2>
 
         <div className="about-grid">

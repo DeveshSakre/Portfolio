@@ -13,6 +13,38 @@
   margin-bottom: 40px;
   max-width: 800px;
   letter-spacing: -0.5px;
+  display: flex;
+  flex-direction: column;
+}
+
+.about-title-prefix {
+  display: block;
+  color: #f8fafc;
+  margin-bottom: 4px;
+}
+
+.about-title-rotating-wrapper {
+  display: block;
+  min-height: 48px;
+  position: relative;
+  overflow: hidden;
+}
+
+.about-title-rotating {
+  display: inline-block;
+  animation: fadeInSlideUp 0.5s ease-out forwards;
+  white-space: nowrap;
+}
+
+@keyframes fadeInSlideUp {
+  0% {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .text-highlight {
@@ -97,6 +129,9 @@
 @media screen and (max-width: 900px) {
   .about-heading {
     font-size: 28px;
+  }
+  .about-title-rotating-wrapper {
+    min-height: 38px;
   }
   .about-grid {
     grid-template-columns: 1fr;

@@ -10,7 +10,7 @@ const Contact = () => {
           <div className="section-tag">Get In Touch</div>
           
           <h2 className="contact-heading">
-            Let's build <span className="text-accent">something meaningful</span>.
+            Let's build <span className="text-accent">something impactful.</span>
           </h2>
           
           <p className="contact-para">
