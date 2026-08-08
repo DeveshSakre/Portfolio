@@ -1,21 +1,18 @@
-import {
-  FaGithub,
-  FaInstagram,
-  FaLinkedinIn,
-  FaYoutube,
-} from "react-icons/fa6";
-import "./styles/SocialIcons.css";
+import { FaGithub, FaLinkedinIn, FaEnvelope } from "react-icons/fa6";
 import { TbNotes } from "react-icons/tb";
 import { useEffect } from "react";
 import HoverLinks from "./HoverLinks";
+import "./styles/SocialIcons.css";
 
 const SocialIcons = () => {
   useEffect(() => {
     const social = document.getElementById("social") as HTMLElement;
+    if (!social) return;
 
     social.querySelectorAll("span").forEach((item) => {
       const elem = item as HTMLElement;
       const link = elem.querySelector("a") as HTMLElement;
+      if (!link) return;
 
       const rect = elem.getBoundingClientRect();
       let mouseX = rect.width / 2;
@@ -47,11 +44,10 @@ const SocialIcons = () => {
       };
 
       document.addEventListener("mousemove", onMouseMove);
-
       updatePosition();
 
       return () => {
-        elem.removeEventListener("mousemove", onMouseMove);
+        document.removeEventListener("mousemove", onMouseMove);
       };
     });
   }, []);
@@ -61,44 +57,36 @@ const SocialIcons = () => {
       <div className="social-icons" data-cursor="icons" id="social">
         <span>
           <a
-            href="https://github.com/akashrmalhotra"
+            href="https://github.com/devsakre"
             target="_blank"
             rel="noreferrer"
+            aria-label="GitHub Profile"
           >
             <FaGithub />
           </a>
         </span>
         <span>
           <a
-            href="https://www.linkedin.com/in/akashrmalhotra/"
+            href="https://linkedin.com/in/deveshsakre"
             target="_blank"
             rel="noreferrer"
+            aria-label="LinkedIn Profile"
           >
             <FaLinkedinIn />
           </a>
         </span>
         <span>
           <a
-            href="https://www.youtube.com/@Leftbraincoder"
-            target="_blank"
-            rel="noreferrer"
+            href="mailto:devsakre30@gmail.com"
+            aria-label="Email Devesh Sakre"
           >
-            <FaYoutube />
-          </a>
-        </span>
-        <span>
-          <a
-            href="https://www.instagram.com/leftbraincoder/"
-            target="_blank"
-            rel="noreferrer"
-          >
-            <FaInstagram />
+            <FaEnvelope />
           </a>
         </span>
       </div>
       <a
         className="resume-button"
-        href="/Akash_Malhotra.pdf"
+        href="/Devesh_Sakre_Resume.pdf"
         target="_blank"
         rel="noreferrer"
       >

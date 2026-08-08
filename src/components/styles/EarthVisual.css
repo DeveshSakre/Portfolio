@@ -1,0 +1,102 @@
+.earth-visual-wrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  min-height: 480px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: visible;
+}
+
+.earth-canvas {
+  width: 100%;
+  height: 100%;
+  display: block;
+  pointer-events: none;
+}
+
+.floating-tech-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.floating-tech-badge {
+  position: absolute;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 18px;
+  border-radius: 30px;
+  background: rgba(15, 23, 42, 0.85);
+  border: 1px solid rgba(56, 189, 248, 0.25);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  color: #f1f5f9;
+  font-size: 13px;
+  font-weight: 600;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.45), 0 0 15px rgba(56, 189, 248, 0.15);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  pointer-events: auto;
+}
+
+.floating-tech-badge:hover {
+  border-color: rgba(56, 189, 248, 0.5);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.5), 0 0 20px rgba(56, 189, 248, 0.3);
+  transform: translateY(-3px) scale(1.02);
+}
+
+.tech-icon {
+  font-size: 18px;
+}
+
+.android-color { color: #3ddc84; }
+.code-color { color: #38bdf8; }
+.ai-color { color: #c084fc; }
+.cloud-color { color: #818cf8; }
+
+/* Intentionally Balanced Badge Orbital Placement */
+.badge-top-left {
+  top: 14%;
+  left: 12%;
+}
+
+.badge-top-right {
+  top: 16%;
+  right: 8%;
+}
+
+.badge-mid-left {
+  top: 48%;
+  left: 2%;
+}
+
+.badge-bottom-right {
+  bottom: 18%;
+  right: 14%;
+}
+
+/* Subtle Controlled Floating Animations */
+.float-1 { animation: floatSubtle 6s ease-in-out infinite; }
+.float-2 { animation: floatSubtle 7s ease-in-out infinite 1s; }
+.float-3 { animation: floatSubtle 6.5s ease-in-out infinite 2s; }
+.float-4 { animation: floatSubtle 8s ease-in-out infinite 0.5s; }
+
+@keyframes floatSubtle {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-8px); }
+}
+
+@media screen and (max-width: 900px) {
+  .earth-visual-wrapper {
+    min-height: 340px;
+  }
+  .badge-top-left { top: 8%; left: 4%; }
+  .badge-top-right { top: 12%; right: 4%; }
+  .badge-mid-left { top: 44%; left: 0%; }
+  .badge-bottom-right { bottom: 8%; right: 8%; }
+}

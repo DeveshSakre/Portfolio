@@ -1,143 +1,137 @@
-import { useState, useCallback } from "react";
+import { FaGithub, FaExternalLinkAlt, FaWrench, FaStethoscope } from "react-icons/fa";
+import { TbDeviceMobile, TbActivity } from "react-icons/tb";
 import "./styles/Work.css";
-import WorkImage from "./WorkImage";
-import { MdArrowBack, MdArrowForward } from "react-icons/md";
 
 const projects = [
   {
-    title: "CallHQ",
-    category: "Voice AI Calling Platform",
-    tools: "Voice AI, Calling Automation, CRM Integrations",
-    image: "/images/callhq.png",
-    link: "https://callhq.ai",
+    title: "LocalFix",
+    subtitle: "Android Service Marketplace",
+    description:
+      "An Android service marketplace connecting customers with local professionals such as electricians, plumbers, and carpenters for seamless on-demand booking and service management.",
+    tech: ["Kotlin", "Jetpack Compose", "MVVM", "Hilt", "Firebase"],
+    category: "Android Application",
+    icon: <FaWrench className="project-icon text-cyan" />,
+    gradient: "linear-gradient(135deg, rgba(34, 211, 238, 0.12) 0%, rgba(15, 23, 42, 0.85) 100%)",
+    borderColor: "rgba(34, 211, 238, 0.35)",
+    github: "https://github.com/devsakre",
+    demo: "https://github.com/devsakre",
   },
   {
-    title: "Whatsapp Automation",
-    category: "WABA Application",
-    tools: "WhatsApp Business API, Workflow Automation, Notifications",
-    image: "/images/whatsapp.png",
-    link: "https://whatsapp.callhq.ai",
+    title: "SpendWise",
+    subtitle: "Expense Tracking Application",
+    description:
+      "A modern Android expense tracking application for managing personal finances with offline-first local storage, interactive graphical budgets, and spending analytics.",
+    tech: ["Kotlin", "Jetpack Compose", "Room", "MVVM"],
+    category: "Android Application",
+    icon: <TbDeviceMobile className="project-icon text-green" />,
+    gradient: "linear-gradient(135deg, rgba(74, 222, 128, 0.12) 0%, rgba(15, 23, 42, 0.85) 100%)",
+    borderColor: "rgba(74, 222, 128, 0.35)",
+    github: "https://github.com/devsakre",
+    demo: "https://github.com/devsakre",
   },
   {
-    title: "Broki",
-    category: "Real Estate Platform for FnB Industry",
-    tools: "Property Discovery, Lead Management, Marketplace Workflows",
-    image: "/images/broki.png",
-    link: "https://broki.in",
+    title: "AirPulse AI",
+    subtitle: "Urban Air-Quality Intelligence",
+    description:
+      "AI-powered urban air-quality intelligence platform providing real-time AQI forecasting, emission source analysis, ward-level insights, and actionable health recommendations.",
+    tech: ["FastAPI", "React", "TypeScript", "Machine Learning", "MapLibre"],
+    category: "AI & Full Stack",
+    icon: <TbActivity className="project-icon text-violet" />,
+    gradient: "linear-gradient(135deg, rgba(168, 85, 247, 0.12) 0%, rgba(15, 23, 42, 0.85) 100%)",
+    borderColor: "rgba(168, 85, 247, 0.35)",
+    github: "https://github.com/devsakre",
+    demo: "https://github.com/devsakre",
   },
   {
-    title: "Orrdr.com",
-    category: "Ecommerce Platform and Mobile App",
-    tools: "Ecommerce, Mobile Experience, Order Management",
-    image: "/images/orrdr.png",
-    link: "https://orrdr.com",
+    title: "MediLink",
+    subtitle: "Healthcare & Medical Application",
+    description:
+      "A modern healthcare and medical management Android application connecting patients with healthcare services, appointment scheduling, and encrypted medical record tracking.",
+    tech: ["Kotlin", "Jetpack Compose", "MVVM", "Room", "Firebase"],
+    category: "Android Application",
+    icon: <FaStethoscope className="project-icon text-blue" />,
+    gradient: "linear-gradient(135deg, rgba(56, 189, 248, 0.12) 0%, rgba(15, 23, 42, 0.85) 100%)",
+    borderColor: "rgba(56, 189, 248, 0.35)",
+    github: "https://github.com/devsakre",
+    demo: "https://github.com/devsakre",
   },
 ];
 
 const Work = () => {
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const [isAnimating, setIsAnimating] = useState(false);
-
-  const goToSlide = useCallback(
-    (index: number) => {
-      if (isAnimating) return;
-      setIsAnimating(true);
-      setCurrentIndex(index);
-      setTimeout(() => setIsAnimating(false), 500);
-    },
-    [isAnimating]
-  );
-
-  const goToPrev = useCallback(() => {
-    const newIndex =
-      currentIndex === 0 ? projects.length - 1 : currentIndex - 1;
-    goToSlide(newIndex);
-  }, [currentIndex, goToSlide]);
-
-  const goToNext = useCallback(() => {
-    const newIndex =
-      currentIndex === projects.length - 1 ? 0 : currentIndex + 1;
-    goToSlide(newIndex);
-  }, [currentIndex, goToSlide]);
-
   return (
     <div className="work-section" id="work">
       <div className="work-container section-container">
-        <h2>
-          My <span>Work</span>
+        <div className="section-tag">Featured Work</div>
+        
+        <h2 className="work-title">
+          Featured <span className="text-accent">Projects</span>
         </h2>
+        <p className="work-subtitle">
+          Selected production projects across Native Android, Healthcare systems, and Full-Stack AI platforms.
+        </p>
 
-        <div className="carousel-wrapper">
-          {/* Navigation Arrows */}
-          <button
-            className="carousel-arrow carousel-arrow-left"
-            onClick={goToPrev}
-            aria-label="Previous project"
-            data-cursor="disable"
-          >
-            <MdArrowBack />
-          </button>
-          <button
-            className="carousel-arrow carousel-arrow-right"
-            onClick={goToNext}
-            aria-label="Next project"
-            data-cursor="disable"
-          >
-            <MdArrowForward />
-          </button>
-
-          {/* Slides */}
-          <div className="carousel-track-container">
+        <div className="projects-grid">
+          {projects.map((project, index) => (
             <div
-              className="carousel-track"
+              key={index}
+              className="project-card glass-card"
               style={{
-                transform: `translateX(-${currentIndex * 100}%)`,
+                background: project.gradient,
+                borderColor: project.borderColor,
               }}
             >
-              {projects.map((project, index) => (
-                <div className="carousel-slide" key={index}>
-                  <div className="carousel-content">
-                    <div className="carousel-info">
-                      <div className="carousel-number">
-                        <h3>0{index + 1}</h3>
-                      </div>
-                      <div className="carousel-details">
-                        <h4>{project.title}</h4>
-                        <p className="carousel-category">
-                          {project.category}
-                        </p>
-                        <div className="carousel-tools">
-                          <span className="tools-label">Tools & Features</span>
-                          <p>{project.tools}</p>
-                        </div>
-                      </div>
-                    </div>
-                    <div className="carousel-image-wrapper">
-                      <WorkImage
-                        image={project.image}
-                        alt={project.title}
-                        link={project.link}
-                      />
-                    </div>
-                  </div>
+              <div className="project-card-header">
+                <div className="project-category-tag">
+                  {project.icon}
+                  <span>{project.category}</span>
                 </div>
-              ))}
-            </div>
-          </div>
+                <span className="project-index">0{index + 1}</span>
+              </div>
 
-          {/* Dot Indicators */}
-          <div className="carousel-dots">
-            {projects.map((_, index) => (
-              <button
-                key={index}
-                className={`carousel-dot ${index === currentIndex ? "carousel-dot-active" : ""
-                  }`}
-                onClick={() => goToSlide(index)}
-                aria-label={`Go to project ${index + 1}`}
-                data-cursor="disable"
-              />
-            ))}
-          </div>
+              <div className="project-card-body">
+                <h3 className="project-name">{project.title}</h3>
+                <h4 className="project-sub">{project.subtitle}</h4>
+                <p className="project-desc">{project.description}</p>
+              </div>
+
+              <div className="project-card-footer">
+                <div className="project-tech-tags">
+                  {project.tech.map((t, tIdx) => (
+                    <span key={tIdx} className="project-tech-badge">
+                      {t}
+                    </span>
+                  ))}
+                </div>
+
+                <div className="project-actions">
+                  {project.github && (
+                    <a
+                      href={project.github}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="project-btn github-btn"
+                      data-cursor="disable"
+                    >
+                      <FaGithub className="btn-btn-icon" />
+                      <span>Code</span>
+                    </a>
+                  )}
+                  {project.demo && (
+                    <a
+                      href={project.demo}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="project-btn demo-btn"
+                      data-cursor="disable"
+                    >
+                      <FaExternalLinkAlt className="btn-btn-icon" />
+                      <span>Demo</span>
+                    </a>
+                  )}
+                </div>
+              </div>
+            </div>
+          ))}
         </div>
       </div>
     </div>

@@ -1,212 +1,193 @@
-import * as THREE from "three";
-import { useRef, useMemo, useState, useEffect } from "react";
-import { Canvas, useFrame } from "@react-three/fiber";
-import { Environment } from "@react-three/drei";
-import { EffectComposer, N8AO } from "@react-three/postprocessing";
+import { useEffect, useRef, useState } from "react";
 import {
-  BallCollider,
-  Physics,
-  RigidBody,
-  CylinderCollider,
-  RapierRigidBody,
-} from "@react-three/rapier";
+  SiKotlin, SiPython, SiCplusplus, SiTypescript,
+  SiAndroid, SiJetpackcompose, SiFirebase,
+  SiFastapi, SiReact, SiNodedotjs,
+  SiTensorflow, SiPostgresql, SiDocker
+} from "react-icons/si";
+import { FaJava } from "react-icons/fa";
+import "./styles/TechStack.css";
 
-const textureLoader = new THREE.TextureLoader();
-const imageUrls = [
-  "/images/react2.webp",
-  "/images/next2.webp",
-  "/images/node2.webp",
-  "/images/express.webp",
-  "/images/mongo.webp",
-  "/images/mysql.webp",
-  "/images/typescript.webp",
-  "/images/javascript.webp",
+const TECH_NODES = [
+  { name: "Kotlin", category: "Mobile", icon: <SiKotlin />, color: "#7F52FF" },
+  { name: "Jetpack Compose", category: "Mobile", icon: <SiJetpackcompose />, color: "#4285F4" },
+  { name: "Android SDK", category: "Mobile", icon: <SiAndroid />, color: "#3DDC84" },
+  { name: "Java", category: "Mobile", icon: <FaJava />, color: "#ED8B00" },
+  { name: "FastAPI", category: "Backend", icon: <SiFastapi />, color: "#009688" },
+  { name: "Node.js", category: "Backend", icon: <SiNodedotjs />, color: "#339933" },
+  { name: "React", category: "Web", icon: <SiReact />, color: "#61DAFB" },
+  { name: "TypeScript", category: "Web", icon: <SiTypescript />, color: "#3178C6" },
+  { name: "Python", category: "AI & ML", icon: <SiPython />, color: "#3776AB" },
+  { name: "TensorFlow", category: "AI & ML", icon: <SiTensorflow />, color: "#FF6F00" },
+  { name: "C++", category: "Systems", icon: <SiCplusplus />, color: "#00599C" },
+  { name: "PostgreSQL", category: "Database", icon: <SiPostgresql />, color: "#4169E1" },
+  { name: "Firebase", category: "Cloud", icon: <SiFirebase />, color: "#FFCA28" },
+  { name: "Docker", category: "DevOps", icon: <SiDocker />, color: "#2496ED" },
 ];
-const textures = imageUrls.map((url) => textureLoader.load(url));
-
-const sphereGeometry = new THREE.SphereGeometry(1, 28, 28);
-
-const spheres = [...Array(30)].map(() => ({
-  scale: [0.7, 1, 0.8, 1, 1][Math.floor(Math.random() * 5)],
-}));
-
-type SphereProps = {
-  vec?: THREE.Vector3;
-  scale: number;
-  r?: typeof THREE.MathUtils.randFloatSpread;
-  material: THREE.MeshPhysicalMaterial;
-  isActive: boolean;
-};
-
-function SphereGeo({
-  vec = new THREE.Vector3(),
-  scale,
-  r = THREE.MathUtils.randFloatSpread,
-  material,
-  isActive,
-}: SphereProps) {
-  const api = useRef<RapierRigidBody | null>(null);
-
-  useFrame((_state, delta) => {
-    if (!isActive) return;
-    delta = Math.min(0.1, delta);
-    const impulse = vec
-      .copy(api.current!.translation())
-      .normalize()
-      .multiply(
-        new THREE.Vector3(
-          -50 * delta * scale,
-          -150 * delta * scale,
-          -50 * delta * scale
-        )
-      );
-
-    api.current?.applyImpulse(impulse, true);
-  });
-
-  return (
-    <RigidBody
-      linearDamping={0.75}
-      angularDamping={0.15}
-      friction={0.2}
-      position={[r(20), r(20) - 25, r(20) - 10]}
-      ref={api}
-      colliders={false}
-    >
-      <BallCollider args={[scale]} />
-      <CylinderCollider
-        rotation={[Math.PI / 2, 0, 0]}
-        position={[0, 0, 1.2 * scale]}
-        args={[0.15 * scale, 0.275 * scale]}
-      />
-      <mesh
-        castShadow
-        receiveShadow
-        scale={scale}
-        geometry={sphereGeometry}
-        material={material}
-        rotation={[0.3, 1, 1]}
-      />
-    </RigidBody>
-  );
-}
-
-type PointerProps = {
-  vec?: THREE.Vector3;
-  isActive: boolean;
-};
-
-function Pointer({ vec = new THREE.Vector3(), isActive }: PointerProps) {
-  const ref = useRef<RapierRigidBody>(null);
-
-  useFrame(({ pointer, viewport }) => {
-    if (!isActive) return;
-    const targetVec = vec.lerp(
-      new THREE.Vector3(
-        (pointer.x * viewport.width) / 2,
-        (pointer.y * viewport.height) / 2,
-        0
-      ),
-      0.2
-    );
-    ref.current?.setNextKinematicTranslation(targetVec);
-  });
-
-  return (
-    <RigidBody
-      position={[100, 100, 100]}
-      type="kinematicPosition"
-      colliders={false}
-      ref={ref}
-    >
-      <BallCollider args={[2]} />
-    </RigidBody>
-  );
-}
 
 const TechStack = () => {
-  const [isActive, setIsActive] = useState(false);
+  const canvasRef = useRef<HTMLCanvasElement | null>(null);
+  const [activeCategory, setActiveCategory] = useState<string>("All");
+
+  const categories = ["All", "Mobile", "Backend", "AI & ML", "Web", "Database", "DevOps"];
 
   useEffect(() => {
-    const handleScroll = () => {
-      const scrollY = window.scrollY || document.documentElement.scrollTop;
-      const threshold = document
-        .getElementById("work")!
-        .getBoundingClientRect().top;
-      setIsActive(scrollY > threshold);
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+
+    const ctx = canvas.getContext("2d");
+    if (!ctx) return;
+
+    let animId: number;
+    let width = (canvas.width = canvas.parentElement?.clientWidth || 900);
+    let height = (canvas.height = canvas.parentElement?.clientHeight || 450);
+
+    const handleResize = () => {
+      if (!canvas || !canvas.parentElement) return;
+      width = canvas.width = canvas.parentElement.clientWidth || 900;
+      height = canvas.height = canvas.parentElement.clientHeight || 450;
     };
-    document.querySelectorAll(".header a").forEach((elem) => {
-      const element = elem as HTMLAnchorElement;
-      element.addEventListener("click", () => {
-        const interval = setInterval(() => {
-          handleScroll();
-        }, 10);
-        setTimeout(() => {
-          clearInterval(interval);
-        }, 1000);
+    window.addEventListener("resize", handleResize);
+
+    // Create Constellation Nodes
+    const nodes: Array<{
+      x: number;
+      y: number;
+      vx: number;
+      vy: number;
+      radius: number;
+      color: string;
+      label: string;
+    }> = TECH_NODES.map((tech) => ({
+      x: Math.random() * (width - 100) + 50,
+      y: Math.random() * (height - 100) + 50,
+      vx: (Math.random() - 0.5) * 0.6,
+      vy: (Math.random() - 0.5) * 0.6,
+      radius: 4,
+      color: tech.color,
+      label: tech.name,
+    }));
+
+    let mouse = { x: -1000, y: -1000 };
+
+    const handleMouseMove = (e: MouseEvent) => {
+      const rect = canvas.getBoundingClientRect();
+      mouse.x = e.clientX - rect.left;
+      mouse.y = e.clientY - rect.top;
+    };
+    canvas.addEventListener("mousemove", handleMouseMove);
+
+    const render = () => {
+      ctx.clearRect(0, 0, width, height);
+
+      // Update Node positions & bounce edges
+      nodes.forEach((node) => {
+        node.x += node.vx;
+        node.y += node.vy;
+
+        if (node.x < 30 || node.x > width - 30) node.vx *= -1;
+        if (node.y < 30 || node.y > height - 30) node.vy *= -1;
+
+        // Draw connections between nearby nodes
+        nodes.forEach((other) => {
+          const dx = other.x - node.x;
+          const dy = other.y - node.y;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+
+          if (dist < 140) {
+            const alpha = (1 - dist / 140) * 0.25;
+            ctx.strokeStyle = `rgba(56, 189, 248, ${alpha})`;
+            ctx.lineWidth = 1;
+            ctx.beginPath();
+            ctx.moveTo(node.x, node.y);
+            ctx.lineTo(other.x, other.y);
+            ctx.stroke();
+          }
+        });
+
+        // Mouse interaction connections
+        const mdx = mouse.x - node.x;
+        const mdy = mouse.y - node.y;
+        const mdist = Math.sqrt(mdx * mdx + mdy * mdy);
+        if (mdist < 160) {
+          ctx.strokeStyle = `rgba(34, 211, 238, ${(1 - mdist / 160) * 0.5})`;
+          ctx.lineWidth = 1.5;
+          ctx.beginPath();
+          ctx.moveTo(node.x, node.y);
+          ctx.lineTo(mouse.x, mouse.y);
+          ctx.stroke();
+        }
+
+        // Draw Node Point
+        ctx.fillStyle = node.color;
+        ctx.shadowColor = node.color;
+        ctx.shadowBlur = 8;
+        ctx.beginPath();
+        ctx.arc(node.x, node.y, node.radius, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.shadowBlur = 0;
+
+        // Node Label
+        ctx.fillStyle = "#94a3b8";
+        ctx.font = "12px 'Plus Jakarta Sans', sans-serif";
+        ctx.fillText(node.label, node.x + 10, node.y + 4);
       });
-    });
-    window.addEventListener("scroll", handleScroll);
+
+      animId = requestAnimationFrame(render);
+    };
+
+    render();
+
     return () => {
-      window.removeEventListener("scroll", handleScroll);
+      cancelAnimationFrame(animId);
+      window.removeEventListener("resize", handleResize);
+      canvas.removeEventListener("mousemove", handleMouseMove);
     };
   }, []);
-  const materials = useMemo(() => {
-    return textures.map(
-      (texture) =>
-        new THREE.MeshPhysicalMaterial({
-          map: texture,
-          emissive: "#ffffff",
-          emissiveMap: texture,
-          emissiveIntensity: 0.3,
-          metalness: 0.5,
-          roughness: 1,
-          clearcoat: 0.1,
-        })
-    );
-  }, []);
+
+  const filteredNodes = activeCategory === "All"
+    ? TECH_NODES
+    : TECH_NODES.filter((n) => n.category === activeCategory);
 
   return (
-    <div className="techstack">
-      <h2> My Techstack</h2>
+    <div className="tech-section section-container">
+      <div className="section-tag">Network Architecture</div>
+      <h2 className="tech-heading">
+        Technical <span className="text-accent">Constellation</span>
+      </h2>
+      <p className="tech-subtitle">
+        Connected engineering ecosystem across Native Android, Distributed Backend, and Applied Machine Learning.
+      </p>
 
-      <Canvas
-        shadows
-        gl={{ alpha: true, stencil: false, depth: false, antialias: false }}
-        camera={{ position: [0, 0, 20], fov: 32.5, near: 1, far: 100 }}
-        onCreated={(state) => (state.gl.toneMappingExposure = 1.5)}
-        className="tech-canvas"
-      >
-        <ambientLight intensity={1} />
-        <spotLight
-          position={[20, 20, 25]}
-          penumbra={1}
-          angle={0.2}
-          color="white"
-          castShadow
-          shadow-mapSize={[512, 512]}
-        />
-        <directionalLight position={[0, 5, -4]} intensity={2} />
-        <Physics gravity={[0, 0, 0]}>
-          <Pointer isActive={isActive} />
-          {spheres.map((props, i) => (
-            <SphereGeo
-              key={i}
-              {...props}
-              material={materials[Math.floor(Math.random() * materials.length)]}
-              isActive={isActive}
-            />
+      {/* Category Filter Pills */}
+      <div className="tech-filters">
+        {categories.map((cat, idx) => (
+          <button
+            key={idx}
+            className={`tech-filter-btn ${activeCategory === cat ? "active" : ""}`}
+            onClick={() => setActiveCategory(cat)}
+            data-cursor="disable"
+          >
+            {cat}
+          </button>
+        ))}
+      </div>
+
+      {/* Architecture Network Canvas & Badge Showcase */}
+      <div className="tech-visualization-box glass-card">
+        <canvas ref={canvasRef} className="tech-network-canvas" />
+
+        <div className="tech-nodes-overlay">
+          {filteredNodes.map((tech, idx) => (
+            <div key={idx} className="tech-node-chip">
+              <span className="tech-node-icon" style={{ color: tech.color }}>
+                {tech.icon}
+              </span>
+              <span className="tech-node-name">{tech.name}</span>
+            </div>
           ))}
-        </Physics>
-        <Environment
-          files="/models/char_enviorment.hdr"
-          environmentIntensity={0.5}
-          environmentRotation={[0, 4, 2]}
-        />
-        <EffectComposer enableNormalPass={false}>
-          <N8AO color="#0f002c" aoRadius={2} intensity={1.15} />
-        </EffectComposer>
-      </Canvas>
+        </div>
+      </div>
     </div>
   );
 };

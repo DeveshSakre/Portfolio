@@ -1,73 +1,70 @@
 import "./styles/Career.css";
+import { FaTrophy, FaGraduationCap, FaMobileAlt } from "react-icons/fa";
+
+const experiences = [
+  {
+    title: "Android & Full-Stack Developer",
+    organization: "Production Software Development",
+    period: "PRESENT",
+    icon: <FaMobileAlt />,
+    description:
+      "Engineering robust Android applications (Kotlin, Jetpack Compose, MVVM, Room, Hilt) and responsive full-stack AI web platforms. Focused on high performance, clean architecture, and real-world deployment.",
+  },
+  {
+    title: "ET AI Hackathon Winner / Finalist",
+    organization: "AirPulse AI Platform",
+    period: "NATIONAL HACKATHON",
+    icon: <FaTrophy />,
+    description:
+      "Designed and built AirPulse AI—an intelligent urban air quality forecasting & analytics engine delivering real-time AQI prediction models, ward-level heatmaps, and AI recommendations.",
+  },
+  {
+    title: "SEBI Hackathon Participant",
+    organization: "BrokerMint Fintech Innovation",
+    period: "NATIONAL HACKATHON",
+    icon: <FaTrophy />,
+    description:
+      "Developed BrokerMint during the SEBI Hackathon, creating high-throughput financial telemetry workflows and algorithmic data validation systems under strict hackathon constraints.",
+  },
+  {
+    title: "Computer Science & Engineering",
+    organization: "Bachelor of Technology (B.Tech)",
+    period: "EDUCATION & CERTS",
+    icon: <FaGraduationCap />,
+    description:
+      "Solid engineering foundation in Data Structures, Algorithms, Software Architecture, Database Management, and Machine Learning concepts.",
+  },
+];
 
 const Career = () => {
   return (
-    <div className="career-section section-container">
+    <div className="career-section section-container" id="experience">
+      <div className="section-tag">Track Record</div>
+      
       <div className="career-container">
-        <h2>
-          My career <span>&</span>
-          <br /> experience
+        <h2 className="career-title">
+          Experience & <span className="text-accent">Achievements</span>
         </h2>
-        <div className="career-info">
-          <div className="career-timeline">
-            <div className="career-dot"></div>
-          </div>
-          <div className="career-info-box">
-            <div className="career-info-in">
-              <div className="career-role">
-                <h4>Co-Founder</h4>
-                <h5>CallHQ.ai</h5>
+        <p className="career-subtitle">
+          Key milestones across software engineering, hackathons, and academic background.
+        </p>
+
+        <div className="career-timeline-wrapper">
+          <div className="timeline-line"></div>
+          
+          <div className="career-cards-list">
+            {experiences.map((exp, idx) => (
+              <div key={idx} className="career-card glass-card">
+                <div className="career-card-badge">
+                  <span className="career-badge-icon">{exp.icon}</span>
+                  <span className="career-badge-period">{exp.period}</span>
+                </div>
+                
+                <h3 className="career-card-title">{exp.title}</h3>
+                <h4 className="career-card-org">{exp.organization}</h4>
+                <p className="career-card-desc">{exp.description}</p>
               </div>
-              <h3>NOW</h3>
-            </div>
-            <p>
-              Building CallHQ.ai, a voice AI platform for
-              automating customer calls, support, and conversions.
-            </p>
-          </div>
-          <div className="career-info-box">
-            <div className="career-info-in">
-              <div className="career-role">
-                <h4>Adobe</h4>
-                <h5>6+ years · Noida</h5>
-              </div>
-              <h3>2017–24</h3>
-            </div>
-            <p>
-              Senior Lead Software Engineer (Feb 2024 – May 2024). Lead Software
-              Engineer (Feb 2021 – Feb 2024). Software Engineer II (Dec 2017 –
-              Feb 2021): internationalization, globalization, and localization for
-              Adobe Technical Communication Suite; functional and linguistic testing
-              strategy; in-house tooling; collaboration with product and engineering
-              for high-quality localized releases.
-            </p>
-          </div>
-          <div className="career-info-box">
-            <div className="career-info-in">
-              <div className="career-role">
-                <h4>Consultant</h4>
-                <h5>Genpact Headstrong </h5>
-              </div>
-              <h3>2016–17</h3>
-            </div>
-            <p>
-              Sep 2016 – Nov 2017. Developed and maintained WCF services consumed
-              by the UI; deployment support across environments; NUnit tests and
-              coverage; bug fixes from QA and users; database work.
-            </p>
-          </div>
-          <div className="career-info-box">
-            <div className="career-info-in">
-              <div className="career-role">
-                <h4>Sf Engineer</h4>
-                <h5>Infogain</h5>
-              </div>
-              <h3>2013-16</h3>
-            </div>
-            <p>
-              Software engineering across enterprise projects, contributing to
-              design, development, and delivery of business applications.
-            </p>
+            ))}
           </div>
         </div>
       </div>

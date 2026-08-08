@@ -1,77 +1,141 @@
-import { useEffect } from "react";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useEffect, useState } from "react";
 import HoverLinks from "./HoverLinks";
-import { gsap } from "gsap";
-import { ScrollSmoother } from "gsap/ScrollSmoother";
+import { HiMenu, HiX } from "react-icons/hi";
+import { FiFileText } from "react-icons/fi";
 import "./styles/Navbar.css";
 
-gsap.registerPlugin(ScrollSmoother, ScrollTrigger);
-export let smoother: ScrollSmoother;
+const navItems = [
+  { id: "about", label: "ABOUT" },
+  { id: "skills", label: "SKILLS" },
+  { id: "work", label: "PROJECTS" },
+  { id: "experience", label: "EXPERIENCE" },
+  { id: "contact", label: "CONTACT" },
+];
 
 const Navbar = () => {
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+  const [activeSection, setActiveSection] = useState<string>("");
+
   useEffect(() => {
-    smoother = ScrollSmoother.create({
-      wrapper: "#smooth-wrapper",
-      content: "#smooth-content",
-      smooth: 1.7,
-      speed: 1.7,
-      effects: true,
-      autoResize: true,
-      ignoreMobileResize: true,
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 40);
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    handleScroll();
+
+    // IntersectionObserver for active section tracking
+    const observerOptions = {
+      root: null,
+      rootMargin: "-20% 0px -50% 0px",
+      threshold: 0.1,
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          setActiveSection(entry.target.id);
+        }
+      });
+    }, observerOptions);
+
+    navItems.forEach((item) => {
+      const element = document.getElementById(item.id);
+      if (element) observer.observe(element);
     });
 
-    smoother.scrollTop(0);
-    smoother.paused(true);
-
-    let links = document.querySelectorAll(".header ul a");
+    const links = document.querySelectorAll(".header ul a, .mobile-nav a");
     links.forEach((elem) => {
-      let element = elem as HTMLAnchorElement;
+      const element = elem as HTMLAnchorElement;
       element.addEventListener("click", (e) => {
-        if (window.innerWidth > 1024) {
+        const href = element.getAttribute("data-href");
+        if (href && href.startsWith("#")) {
           e.preventDefault();
-          let elem = e.currentTarget as HTMLAnchorElement;
-          let section = elem.getAttribute("data-href");
-          smoother.scrollTo(section, true, "top top");
+          setMobileMenuOpen(false);
+          const targetEl = document.querySelector(href);
+          if (targetEl) {
+            targetEl.scrollIntoView({ behavior: "smooth" });
+          }
         }
       });
     });
-    window.addEventListener("resize", () => {
-      ScrollSmoother.refresh(true);
-    });
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      observer.disconnect();
+    };
   }, []);
+
   return (
     <>
-      <div className="header">
-        <a href="/#" className="navbar-title" data-cursor="disable">
-          AM
-        </a>
-        <a
-          href="https://www.linkedin.com/in/akashrmalhotra/"
-          className="navbar-connect"
-          data-cursor="disable"
-          target="_blank"
-          rel="noreferrer"
-        >
-          linkedin.com/in/akashrmalhotra
-        </a>
-        <ul>
-          <li>
-            <a data-href="#about" href="#about">
-              <HoverLinks text="ABOUT" />
+      <header className={`header ${scrolled ? "header-scrolled" : ""}`}>
+        <div className="navbar-container">
+          <a href="#" className="navbar-title" data-cursor="disable">
+            <span className="logo-text">DEVESH</span>
+            <span className="logo-dot">.</span>
+          </a>
+
+          {/* Desktop Nav */}
+          <nav className="desktop-nav">
+            <ul>
+              {navItems.map((item) => {
+                const isActive = activeSection === item.id;
+                return (
+                  <li key={item.id} className={isActive ? "nav-active" : ""}>
+                    <a data-href={`#${item.id}`} href={`#${item.id}`}>
+                      <HoverLinks text={item.label} />
+                    </a>
+                    {isActive && <span className="active-dot-indicator" />}
+                  </li>
+                );
+              })}
+            </ul>
+
+            <a
+              href="/Devesh_Sakre_Resume.pdf"
+              target="_blank"
+              rel="noreferrer"
+              className="navbar-resume-btn"
+              data-cursor="disable"
+            >
+              <span>Resume</span>
+              <FiFileText className="btn-icon" />
             </a>
-          </li>
-          <li>
-            <a data-href="#work" href="#work">
-              <HoverLinks text="WORK" />
-            </a>
-          </li>
-          <li>
-            <a data-href="#contact" href="#contact">
-              <HoverLinks text="CONTACT" />
-            </a>
-          </li>
-        </ul>
-      </div>
+          </nav>
+
+          {/* Mobile Hamburger Toggle */}
+          <button
+            className="mobile-menu-toggle"
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            aria-label="Toggle Navigation Menu"
+            data-cursor="disable"
+          >
+            {mobileMenuOpen ? <HiX size={26} /> : <HiMenu size={26} />}
+          </button>
+        </div>
+
+        {/* Mobile Navigation Drawer */}
+        <div className={`mobile-nav ${mobileMenuOpen ? "open" : ""}`}>
+          <ul>
+            {navItems.map((item) => (
+              <li key={item.id} className={activeSection === item.id ? "mobile-nav-active" : ""}>
+                <a data-href={`#${item.id}`} href={`#${item.id}`}>
+                  {item.label}
+                </a>
+              </li>
+            ))}
+          </ul>
+          <a
+            href="/Devesh_Sakre_Resume.pdf"
+            target="_blank"
+            rel="noreferrer"
+            className="mobile-resume-btn"
+          >
+            Download Resume
+          </a>
+        </div>
+      </header>
 
       <div className="landing-circle1"></div>
       <div className="landing-circle2"></div>

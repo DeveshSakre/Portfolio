@@ -1,116 +1,132 @@
 .contact-section {
-  margin: auto;
-  padding-bottom: 100px;
-  margin-top: 100px;
+  width: 100%;
   position: relative;
-  z-index: 2;
-  background-color: var(--backgroundColor);
+  z-index: 10;
+  padding: 80px 0 100px;
 }
 
-.contact-section h3 {
-  font-size: 60px;
-  font-weight: 400;
-  text-transform: uppercase;
-  margin: 0;
-}
-
-.contact-flex {
-  display: flex;
-  justify-content: space-between;
-}
-
-.contact-flex h4 {
-  font-weight: 500;
-  margin: 0;
-  opacity: 0.6;
-}
-
-.contact-box {
+.contact-container {
+  padding: 60px;
   display: flex;
   flex-direction: column;
+  gap: 48px;
+  background: linear-gradient(135deg, rgba(15, 23, 42, 0.8) 0%, rgba(7, 10, 18, 0.9) 100%);
+  border: 1px solid rgba(56, 189, 248, 0.2);
+  border-radius: 32px;
 }
 
-.contact-flex p {
-  margin-top: 10px;
-  margin-bottom: 20px;
+.contact-cta-wrapper {
+  max-width: 650px;
 }
 
-a.contact-social {
-  font-size: 25px;
-  border-bottom: 1px solid #ccc;
+.contact-heading {
+  font-size: 44px;
+  line-height: 1.2;
+  font-weight: 800;
+  color: #f8fafc;
+  margin: 0 0 16px 0;
+  letter-spacing: -1px;
 }
 
-.contact-box h2 {
-  font-weight: 400;
-  font-size: 23px;
-  margin: 0;
+.contact-para {
+  font-size: 17px;
+  line-height: 1.6;
+  color: #94a3b8;
+  margin-bottom: 32px;
 }
 
-.contact-box h2>span {
-  color: var(--accentColor);
+.contact-email-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 32px;
+  border-radius: 14px;
+  background: linear-gradient(135deg, #38bdf8 0%, #6366f1 100%);
+  color: #070a12;
+  font-size: 16px;
+  font-weight: 700;
+  text-decoration: none;
+  box-shadow: 0 8px 30px rgba(56, 189, 248, 0.3);
+  transition: all 0.3s ease;
 }
 
-.contact-box h5 {
-  font-size: 20px;
-  font-weight: 500;
-  line-height: 20px;
-  display: flex;
+.contact-email-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 40px rgba(56, 189, 248, 0.5);
+  color: #070a12;
+}
+
+.contact-email-btn .arrow-icon {
+  transition: transform 0.25s ease;
+}
+
+.contact-email-btn:hover .arrow-icon {
+  transform: translateX(4px);
+}
+
+.contact-links-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 24px;
+  padding-top: 32px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.social-link-item h4 {
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: #64748b;
+  margin: 0 0 8px 0;
+}
+
+.social-btn {
+  display: inline-flex;
+  align-items: center;
   gap: 10px;
-  opacity: 0.5;
+  color: #cbd5e1;
+  font-size: 15px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: color 0.25s ease;
 }
 
-@media only screen and (max-width: 1600px) {
-  .contact-section h3 {
-    font-size: 50px;
-  }
-
-  .contact-box h2 {
-    font-size: 20px;
-  }
-
-  a.contact-social {
-    font-size: 22px;
-  }
+.social-btn:hover {
+  color: #38bdf8;
 }
 
-@media only screen and (max-width: 1300px) {
-  .contact-section h3 {
-    font-size: 40px;
-  }
-
-  .contact-box h2 {
-    font-size: 18px;
-  }
-
-  a.contact-social {
-    font-size: 20px;
-  }
-
-  .contact-flex p {
-    margin-top: 0px;
-  }
+.contact-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 24px;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  font-size: 14px;
+  color: #64748b;
 }
 
-@media only screen and (max-width: 900px) {
-  .contact-flex {
-    flex-direction: column;
-    gap: 40px;
-  }
+.contact-footer strong {
+  color: #cbd5e1;
+}
 
-  .contact-flex p {
-    margin-bottom: 0px;
-  }
+.copyright-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 13px;
+}
 
-  .contact-flex h4 {
-    margin-top: 20px;
-  }
-
-  .contact-section {
-    margin-top: 50px;
-    padding-bottom: 50px;
-  }
-
+@media screen and (max-width: 768px) {
   .contact-container {
-    width: calc(100% - 25px);
+    padding: 32px 24px;
+  }
+  .contact-heading {
+    font-size: 32px;
+  }
+  .contact-footer {
+    flex-direction: column;
+    gap: 12px;
+    align-items: flex-start;
   }
 }
