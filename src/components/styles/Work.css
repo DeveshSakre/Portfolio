@@ -2,7 +2,7 @@
   width: 100%;
   position: relative;
   z-index: 10;
-  padding: 80px 0;
+  padding: 24px 0;
 }
 
 .work-title {
@@ -17,7 +17,7 @@
 .work-subtitle {
   font-size: 17px;
   color: #94a3b8;
-  margin: 0 0 44px 0;
+  margin: 0 0 28px 0;
   max-width: 650px;
 }
 
@@ -25,6 +25,12 @@
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 28px;
+}
+
+@media screen and (min-width: 901px) {
+  .spendwise-card-featured {
+    grid-column: 1 / -1;
+  }
 }
 
 .project-card {
@@ -137,6 +143,7 @@
   display: flex;
   align-items: center;
   gap: 12px;
+  flex-wrap: wrap;
 }
 
 .project-btn {
@@ -149,6 +156,7 @@
   font-weight: 600;
   text-decoration: none;
   transition: all 0.25s ease;
+  font-family: inherit;
 }
 
 .github-btn {
@@ -163,16 +171,97 @@
   border-color: #f1f5f9;
 }
 
-.demo-btn {
+.demo-btn,
+.apk-btn,
+.video-btn {
   background: rgba(56, 189, 248, 0.15);
   border: 1px solid rgba(56, 189, 248, 0.3);
   color: #38bdf8;
 }
 
-.demo-btn:hover {
+.demo-btn:hover,
+.apk-btn:not(:disabled):hover,
+.video-btn:hover {
   background: #38bdf8;
   color: #070a12;
   box-shadow: 0 0 15px rgba(56, 189, 248, 0.4);
+}
+
+.apk-btn:disabled,
+.apk-btn.disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  background: rgba(148, 163, 184, 0.1);
+  border-color: rgba(148, 163, 184, 0.2);
+  color: #64748b;
+  box-shadow: none;
+}
+
+.screenshots-btn {
+  background: rgba(56, 189, 248, 0.12);
+  border: 1px solid rgba(56, 189, 248, 0.3);
+  color: #38bdf8;
+  cursor: pointer;
+}
+
+.screenshots-btn:hover {
+  background: rgba(56, 189, 248, 0.25);
+  color: #38bdf8;
+  border-color: #38bdf8;
+  box-shadow: 0 0 15px rgba(56, 189, 248, 0.3);
+}
+
+.screenshots-btn.active {
+  background: #38bdf8;
+  color: #070a12;
+  border-color: #38bdf8;
+  box-shadow: 0 0 20px rgba(56, 189, 248, 0.4);
+}
+
+/* Technical Highlights Container */
+.project-highlights-container {
+  margin-top: 24px;
+  padding-top: 20px;
+  border-top: 1px solid rgba(56, 189, 248, 0.15);
+}
+
+.highlights-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #38bdf8;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+}
+
+.highlights-icon {
+  font-size: 15px;
+  color: #38bdf8;
+}
+
+.highlights-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px 24px;
+}
+
+.highlight-bullet {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 13.5px;
+  color: #cbd5e1;
+  line-height: 1.5;
+}
+
+.bullet-icon {
+  color: #38bdf8;
+  font-size: 14px;
+  margin-top: 3px;
+  flex-shrink: 0;
 }
 
 .btn-btn-icon {
@@ -188,5 +277,37 @@
   }
   .project-card {
     padding: 24px;
+  }
+}
+
+@media screen and (max-width: 640px) {
+  .highlights-grid {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .work-title {
+    font-size: 28px;
+  }
+  .project-card {
+    padding: 18px;
+  }
+  .project-name {
+    font-size: 22px;
+  }
+  .project-sub {
+    font-size: 13.5px;
+  }
+  .project-desc {
+    font-size: 13.5px;
+  }
+  .project-actions {
+    gap: 8px;
+  }
+  .project-btn {
+    padding: 8px 14px;
+    font-size: 12.5px;
   }
 }

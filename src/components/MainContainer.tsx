@@ -4,8 +4,9 @@ import Skills from "./Skills";
 import Work from "./Work";
 import Career from "./Career";
 import Contact from "./Contact";
-import Cursor from "./Cursor";
 import Landing from "./Landing";
+import Impact from "./Impact";
+import WhatIBuild from "./WhatIBuild";
 import Navbar from "./Navbar";
 import SocialIcons from "./SocialIcons";
 import setSplitText from "./utils/splitText";
@@ -31,10 +32,11 @@ const MainContainer = () => {
 
   return (
     <div className="container-main">
-      <Cursor />
       <Navbar />
       <SocialIcons />
       <Landing />
+      <Impact />
+      <WhatIBuild />
       <About />
       <Skills />
       <Work />

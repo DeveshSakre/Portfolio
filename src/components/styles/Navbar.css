@@ -151,11 +151,13 @@
     top: 0;
     right: -100%;
     width: 280px;
+    max-width: 85vw;
     height: 100vh;
+    height: 100dvh;
     background: rgba(10, 14, 23, 0.95);
     backdrop-filter: blur(20px);
     border-left: 1px solid rgba(56, 189, 248, 0.15);
-    padding: 100px 30px 40px;
+    padding: 90px 24px 40px;
     transition: right 0.4s cubic-bezier(0.16, 1, 0.3, 1);
     z-index: 9998;
   }

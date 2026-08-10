@@ -33,7 +33,7 @@ const CONTINENTS: number[][][] = [
   // Eurasia / Asia
   [
     [75, 60], [75, 100], [70, 140], [60, 170], [45, 140], [38, 120], 
-    [22, 114], [10, 104], [1, 104], [10, 98], [22, 88], [25, 62], 
+    [22, 114], [10, 104], [1, 104], [10, 98], [22, 89], [25, 62], 
     [30, 48], [40, 50], [60, 50], [75, 60]
   ],
   // Indian Subcontinent
@@ -85,7 +85,7 @@ const EarthVisual = () => {
     };
     window.addEventListener("resize", handleResize);
 
-    // Stars background
+    // Background space stars
     const stars: Array<{ x: number; y: number; size: number; alpha: number; speed: number }> = [];
     for (let i = 0; i < 65; i++) {
       stars.push({
@@ -124,30 +124,30 @@ const EarthVisual = () => {
         ctx.fill();
       });
 
-      const centerX = width * 0.62;
-      const centerY = height * 0.55;
-      const radius = Math.min(width, height) * 0.42;
+      const isMobile = width <= 900;
+      const centerX = isMobile ? width * 0.5 : width * 0.62;
+      const centerY = isMobile ? height * 0.5 : height * 0.55;
+      const radius = Math.min(width, height) * (isMobile ? 0.38 : 0.42);
 
-      // 2. Outer Atmospheric Blue/Cyan Rim Glow
+      // 2. Subtle Outer Atmospheric Cyan/Blue Rim Glow
       const glowGrad = ctx.createRadialGradient(
         centerX,
         centerY,
-        radius * 0.85,
+        radius * 0.88,
         centerX,
         centerY,
         radius * 1.35
       );
-      glowGrad.addColorStop(0, "rgba(56, 189, 248, 0.4)");
-      glowGrad.addColorStop(0.35, "rgba(34, 211, 238, 0.18)");
-      glowGrad.addColorStop(0.7, "rgba(129, 140, 248, 0.08)");
-      glowGrad.addColorStop(1, "rgba(7, 10, 18, 0)");
+      glowGrad.addColorStop(0, "rgba(56, 189, 248, 0.25)");
+      glowGrad.addColorStop(0.4, "rgba(34, 211, 238, 0.1)");
+      glowGrad.addColorStop(0.8, "rgba(7, 10, 18, 0)");
 
       ctx.fillStyle = glowGrad;
       ctx.beginPath();
       ctx.arc(centerX, centerY, radius * 1.35, 0, Math.PI * 2);
       ctx.fill();
 
-      // 3. Main Dark Globe Ocean Base
+      // 3. Dark Navy / Near-Black Globe Base (Spherical Depth Gradient)
       const oceanGrad = ctx.createRadialGradient(
         centerX - radius * 0.35,
         centerY - radius * 0.35,
@@ -156,24 +156,24 @@ const EarthVisual = () => {
         centerY,
         radius
       );
-      oceanGrad.addColorStop(0, "#0f172a");
-      oceanGrad.addColorStop(0.5, "#0b1329");
-      oceanGrad.addColorStop(0.85, "#070c1a");
-      oceanGrad.addColorStop(1, "#030611");
+      oceanGrad.addColorStop(0, "#0e172a");  // Dark slate-navy highlight
+      oceanGrad.addColorStop(0.5, "#080f20"); // Near-black navy
+      oceanGrad.addColorStop(0.85, "#050914"); // Midnight shadow
+      oceanGrad.addColorStop(1, "#020409");   // Rim shadow
 
       ctx.fillStyle = oceanGrad;
       ctx.beginPath();
       ctx.arc(centerX, centerY, radius, 0, Math.PI * 2);
       ctx.fill();
 
-      // Mask to clip continents and grid strictly within Earth circle
+      // Mask to clip grid & landmasses strictly within Earth circle
       ctx.save();
       ctx.beginPath();
       ctx.arc(centerX, centerY, radius - 1, 0, Math.PI * 2);
       ctx.clip();
 
-      // 4. Draw Latitude / Longitude Tech Grid Lines
-      ctx.strokeStyle = "rgba(56, 189, 248, 0.1)";
+      // 4. Subtle 3D Latitude & Longitude Grid Lines
+      ctx.strokeStyle = "rgba(56, 189, 248, 0.08)";
       ctx.lineWidth = 1;
 
       for (let lat = -60; lat <= 60; lat += 30) {
@@ -197,7 +197,7 @@ const EarthVisual = () => {
         ctx.stroke();
       }
 
-      // 5. Draw Digital Continent Landmass Polygons
+      // 5. Geographic Continent Outlines & Subtle Cyan Shading
       CONTINENTS.forEach((continent) => {
         ctx.beginPath();
         let pathStarted = false;
@@ -221,7 +221,7 @@ const EarthVisual = () => {
 
         if (pathStarted) {
           ctx.closePath();
-          ctx.fillStyle = "rgba(34, 211, 238, 0.18)";
+          ctx.fillStyle = "rgba(34, 211, 238, 0.12)";
           ctx.fill();
           ctx.strokeStyle = "rgba(56, 189, 248, 0.45)";
           ctx.lineWidth = 1.2;
@@ -229,7 +229,7 @@ const EarthVisual = () => {
         }
       });
 
-      // 6. Draw Glowing City / Data Nodes
+      // 6. Refined Gold / Amber Tech Hub Data Points
       CITY_NODES.forEach((city) => {
         const pt = project3D(city.lat, city.lon, radius, rotationAngle);
         if (pt.z > 5) {
@@ -252,10 +252,10 @@ const EarthVisual = () => {
       ctx.restore();
 
       // 7. Atmospheric Cyan Edge Highlight Ring
-      ctx.strokeStyle = "rgba(56, 189, 248, 0.75)";
-      ctx.lineWidth = 2;
+      ctx.strokeStyle = "rgba(56, 189, 248, 0.65)";
+      ctx.lineWidth = 1.8;
       ctx.shadowColor = "#38bdf8";
-      ctx.shadowBlur = 10;
+      ctx.shadowBlur = 8;
       ctx.beginPath();
       ctx.arc(centerX, centerY, radius, 0, Math.PI * 2);
       ctx.stroke();

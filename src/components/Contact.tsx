@@ -1,4 +1,4 @@
-import { FaGithub, FaLinkedin, FaEnvelope, FaArrowRight } from "react-icons/fa";
+import { FaGithub, FaLinkedin, FaEnvelope, FaPhoneAlt } from "react-icons/fa";
 import { MdCopyright } from "react-icons/md";
 import "./styles/Contact.css";
 
@@ -8,66 +8,68 @@ const Contact = () => {
       <div className="contact-container glass-card">
         <div className="contact-cta-wrapper">
           <div className="section-tag">Get In Touch</div>
-          
+
           <h2 className="contact-heading">
             Let's build <span className="text-accent">something impactful.</span>
           </h2>
-          
+
           <p className="contact-para">
-            Whether you have a product idea, an Android application to build, or an AI system to scale, I'm always open to discussing new opportunities and collaborations.
+            Open to SDE, Android, Full-Stack, and AI/ML opportunities. If you're hiring, collaborating, or have an interesting problem to solve, I'd love to connect.
           </p>
+
+          <div className="contact-actions-row">
+            <a
+              href="mailto:devsakre30@gmail.com"
+              className="contact-btn primary-btn"
+              data-cursor="disable"
+              aria-label="Send an email to Devesh Sakre"
+            >
+              <FaEnvelope className="btn-icon" />
+              <span>Email Me</span>
+            </a>
+
+            <a
+              href="https://www.linkedin.com/in/devesh-sakre-8972542b7/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="contact-btn secondary-btn"
+              data-cursor="disable"
+              aria-label="Visit Devesh Sakre's LinkedIn profile"
+            >
+              <FaLinkedin className="btn-icon" />
+              <span>LinkedIn</span>
+            </a>
+
+            <a
+              href="https://github.com/DeveshSakre"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="contact-btn secondary-btn"
+              data-cursor="disable"
+              aria-label="Visit Devesh Sakre's GitHub profile"
+            >
+              <FaGithub className="btn-icon" />
+              <span>GitHub</span>
+            </a>
+
+            <a
+              href="tel:8010648282"
+              className="contact-btn secondary-btn"
+              data-cursor="disable"
+              aria-label="Call Devesh Sakre at 8010648282"
+            >
+              <FaPhoneAlt className="btn-icon" />
+              <span>Call Me</span>
+            </a>
+          </div>
 
           <a
             href="mailto:devsakre30@gmail.com"
-            className="contact-email-btn"
-            data-cursor="disable"
+            className="contact-subtle-email"
+            aria-label="Email address: devsakre30@gmail.com"
           >
-            <FaEnvelope className="btn-icon" />
-            <span>devsakre30@gmail.com</span>
-            <FaArrowRight className="arrow-icon" />
+            devsakre30@gmail.com
           </a>
-        </div>
-
-        <div className="contact-links-grid">
-          <div className="social-link-item">
-            <h4>Email</h4>
-            <a
-              href="mailto:devsakre30@gmail.com"
-              className="social-btn"
-              data-cursor="disable"
-            >
-              <FaEnvelope />
-              <span>devsakre30@gmail.com</span>
-            </a>
-          </div>
-
-          <div className="social-link-item">
-            <h4>GitHub</h4>
-            <a
-              href="https://github.com/devsakre"
-              target="_blank"
-              rel="noreferrer"
-              className="social-btn"
-              data-cursor="disable"
-            >
-              <FaGithub />
-              <span>github.com/devsakre</span>
-            </a>
-          </div>
-
-          <div className="social-link-item">
-            <h4>LinkedIn</h4>
-            <a
-              href="https://linkedin.com/in/deveshsakre"
-              target="_blank"
-              rel="noreferrer"
-              className="social-btn"
-              data-cursor="disable"
-            >
-              <FaLinkedin />
-              <span>linkedin.com/in/deveshsakre</span>
-            </a>
-          </div>
         </div>
 
         <div className="contact-footer">

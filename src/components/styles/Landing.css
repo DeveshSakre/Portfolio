@@ -3,8 +3,7 @@
   max-width: var(--cMaxWidth);
   margin: 0 auto;
   position: relative;
-  min-height: 100vh;
-  min-height: 100svh;
+  min-height: auto;
   display: flex;
   align-items: center;
 }
@@ -15,8 +14,8 @@
   margin: 0 auto;
   position: relative;
   z-index: 10;
-  padding-top: 100px;
-  padding-bottom: 60px;
+  padding-top: 90px;
+  padding-bottom: 24px;
 }
 
 .hero-grid {
@@ -82,12 +81,27 @@
   font-weight: 700;
   margin: 0 0 16px 0;
   letter-spacing: -0.5px;
+  min-height: 40px;
+  display: flex;
+  align-items: center;
 }
 
 .role-gradient {
   background: linear-gradient(135deg, #22d3ee 0%, #38bdf8 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+  display: inline-block;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.role-gradient.fade-in {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.role-gradient.fade-out {
+  opacity: 0;
+  transform: translateY(-4px);
 }
 
 .hero-description {
@@ -207,7 +221,7 @@
   position: relative;
 }
 
-/* Ambient glows */
+/* Ambient glow */
 .landing-circle1 {
   top: 10%;
   left: -5%;
@@ -216,19 +230,6 @@
   width: 450px;
   height: 450px;
   background: radial-gradient(circle, rgba(56, 189, 248, 0.15) 0%, rgba(7, 10, 18, 0) 70%);
-  filter: blur(50px);
-  border-radius: 50%;
-  pointer-events: none;
-}
-
-.landing-circle2 {
-  bottom: 10%;
-  right: -5%;
-  z-index: 1;
-  position: fixed;
-  width: 450px;
-  height: 450px;
-  background: radial-gradient(circle, rgba(129, 140, 248, 0.12) 0%, rgba(7, 10, 18, 0) 70%);
   filter: blur(50px);
   border-radius: 50%;
   pointer-events: none;
@@ -248,15 +249,53 @@
 @media screen and (max-width: 992px) {
   .hero-grid {
     grid-template-columns: 1fr;
-    gap: 40px;
+    gap: 32px;
   }
   .hero-title {
-    font-size: 42px;
+    font-size: 44px;
   }
   .hero-role {
     font-size: 24px;
   }
   .hero-visual-side {
-    height: 380px;
+    height: 360px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .landing-container {
+    padding-top: 90px;
+    padding-bottom: 40px;
+  }
+  .hero-title {
+    font-size: 36px;
+    letter-spacing: -1px;
+  }
+  .hero-role {
+    font-size: 22px;
+  }
+  .hero-greeting {
+    font-size: 18px;
+  }
+  .hero-description {
+    font-size: 15px;
+    margin-bottom: 24px;
+  }
+  .hero-cta-group {
+    gap: 12px;
+    width: 100%;
+    margin-bottom: 24px;
+  }
+  .hero-btn {
+    padding: 12px 20px;
+    font-size: 14px;
+  }
+  .hero-social-row {
+    gap: 16px;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+  }
+  .hero-visual-side {
+    height: 310px;
   }
 }

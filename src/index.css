@@ -42,6 +42,22 @@ h6 {
   color: var(--textPrimary);
 }
 
+.text-highlight,
+.text-highlight * {
+  background: linear-gradient(135deg, #38bdf8 0%, #818cf8 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: inline-block;
+}
+
+.text-accent,
+.text-accent * {
+  background: linear-gradient(135deg, #22d3ee 0%, #38bdf8 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: inline-block;
+}
+
 html {
   scroll-behavior: smooth;
   overflow-x: hidden;
@@ -55,8 +71,7 @@ body {
   background-color: var(--backgroundColor);
   background-image: 
     radial-gradient(at 0% 0%, rgba(56, 189, 248, 0.08) 0px, transparent 50%),
-    radial-gradient(at 100% 0%, rgba(129, 140, 248, 0.08) 0px, transparent 50%),
-    radial-gradient(at 50% 100%, rgba(168, 85, 247, 0.05) 0px, transparent 50%);
+    radial-gradient(at 100% 0%, rgba(56, 189, 248, 0.05) 0px, transparent 50%);
   background-attachment: fixed;
   flex-grow: 1;
   --cWidth: calc(100% - 30px);
@@ -125,7 +140,7 @@ main {
 .section-container {
   max-width: 1280px;
   margin: 0 auto;
-  padding: 100px 24px;
+  padding: 40px 24px;
 }
 
 .section-tag {
@@ -182,5 +197,11 @@ main {
   }
   .section-container {
     padding: 60px 16px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .section-container {
+    padding: 44px 14px;
   }
 }

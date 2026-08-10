@@ -85,8 +85,9 @@ const TechStack = () => {
         node.x += node.vx;
         node.y += node.vy;
 
-        if (node.x < 30 || node.x > width - 30) node.vx *= -1;
-        if (node.y < 30 || node.y > height - 30) node.vy *= -1;
+        const maxRight = Math.max(30, width - 85);
+        if (node.x < 25 || node.x > maxRight) node.vx *= -1;
+        if (node.y < 25 || node.y > height - 25) node.vy *= -1;
 
         // Draw connections between nearby nodes
         nodes.forEach((other) => {

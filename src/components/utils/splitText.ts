@@ -11,17 +11,17 @@ gsap.registerPlugin(ScrollTrigger, SplitText);
 
 export default function setSplitText() {
   ScrollTrigger.config({ ignoreMobileResize: true });
-  if (window.innerWidth < 900) return;
+  if (window.innerWidth < 768) return;
 
   const paras: NodeListOf<ParaElement> = document.querySelectorAll(
-    ".skills-subtitle, .work-subtitle, .career-subtitle"
+    ".skills-subtitle, .work-subtitle, .career-subtitle, .what-i-build-subtitle, .tech-subtitle, .impact-subtitle"
   );
   const titles: NodeListOf<ParaElement> = document.querySelectorAll(
-    ".skills-title, .work-title, .career-title"
+    ".skills-title, .work-title, .career-title, .what-i-build-title, .tech-heading, .impact-title"
   );
 
-  const TriggerStart = window.innerWidth <= 1024 ? "top 60%" : "20% 60%";
-  const ToggleAction = "play pause resume reverse";
+  const TriggerStart = "top 85%";
+  const ToggleAction = "play none none none";
 
   paras.forEach((para: ParaElement) => {
     try {
@@ -38,18 +38,18 @@ export default function setSplitText() {
 
       para.anim = gsap.fromTo(
         para.split.words,
-        { autoAlpha: 0, y: 30 },
+        { autoAlpha: 0, y: 25 },
         {
           autoAlpha: 1,
           scrollTrigger: {
-            trigger: para.parentElement?.parentElement || para,
+            trigger: para.parentElement || para,
             toggleActions: ToggleAction,
             start: TriggerStart,
           },
-          duration: 0.8,
+          duration: 0.7,
           ease: "power3.out",
           y: 0,
-          stagger: 0.02,
+          stagger: 0.015,
         }
       );
     } catch (e) {
@@ -69,18 +69,18 @@ export default function setSplitText() {
       });
       title.anim = gsap.fromTo(
         title.split.words,
-        { autoAlpha: 0, y: 30 },
+        { autoAlpha: 0, y: 25 },
         {
           autoAlpha: 1,
           scrollTrigger: {
-            trigger: title.parentElement?.parentElement || title,
+            trigger: title.parentElement || title,
             toggleActions: ToggleAction,
             start: TriggerStart,
           },
-          duration: 0.8,
+          duration: 0.7,
           ease: "power2.out",
           y: 0,
-          stagger: 0.02,
+          stagger: 0.015,
         }
       );
     } catch (e) {

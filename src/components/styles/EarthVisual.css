@@ -93,10 +93,36 @@
 
 @media screen and (max-width: 900px) {
   .earth-visual-wrapper {
-    min-height: 340px;
+    min-height: 330px;
   }
-  .badge-top-left { top: 8%; left: 4%; }
-  .badge-top-right { top: 12%; right: 4%; }
-  .badge-mid-left { top: 44%; left: 0%; }
-  .badge-bottom-right { bottom: 8%; right: 8%; }
+  .floating-tech-badge {
+    padding: 7px 14px;
+    font-size: 12px;
+    gap: 8px;
+  }
+  .tech-icon {
+    font-size: 15px;
+  }
+  .badge-top-left { top: 4%; left: 2%; }
+  .badge-top-right { top: 4%; right: 2%; }
+  .badge-mid-left { top: 46%; left: 1%; }
+  .badge-bottom-right { bottom: 4%; right: 2%; }
+}
+
+@media screen and (max-width: 480px) {
+  .earth-visual-wrapper {
+    min-height: 290px;
+  }
+  .floating-tech-badge {
+    padding: 5px 10px;
+    font-size: 11px;
+    gap: 6px;
+  }
+  .tech-icon {
+    font-size: 13px;
+  }
+  .badge-top-left { top: 2%; left: 0%; }
+  .badge-top-right { top: 2%; right: 0%; }
+  .badge-mid-left { top: 48%; left: 0%; }
+  .badge-bottom-right { bottom: 2%; right: 0%; }
 }

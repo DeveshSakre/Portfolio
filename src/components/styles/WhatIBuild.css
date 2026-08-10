@@ -1,0 +1,108 @@
+.what-i-build-section {
+  width: 100%;
+  position: relative;
+  z-index: 10;
+  padding: 24px 0;
+}
+
+.what-i-build-title {
+  font-size: 42px;
+  line-height: 1.2;
+  font-weight: 800;
+  margin: 0 0 12px 0;
+  letter-spacing: -1px;
+  color: #f8fafc;
+}
+
+.what-i-build-subtitle {
+  font-size: 16.5px;
+  color: #94a3b8;
+  margin: 0 0 28px 0;
+  max-width: 650px;
+  line-height: 1.6;
+}
+
+.what-i-build-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+}
+
+.build-card {
+  position: relative;
+  background: rgba(15, 23, 42, 0.65);
+  border: 1px solid rgba(56, 189, 248, 0.15);
+  border-radius: 20px;
+  padding: 32px;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+    border-color 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  overflow: hidden;
+}
+
+.build-card:hover {
+  transform: translateY(-5px);
+  border-color: rgba(56, 189, 248, 0.4);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), 0 0 20px rgba(56, 189, 248, 0.15);
+}
+
+.build-card-number {
+  font-size: 14px;
+  font-weight: 800;
+  color: #38bdf8;
+  letter-spacing: 1px;
+  margin-bottom: 20px;
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: 8px;
+  background: rgba(56, 189, 248, 0.1);
+  border: 1px solid rgba(56, 189, 248, 0.2);
+  align-self: flex-start;
+}
+
+.build-card-title {
+  font-size: 22px;
+  font-weight: 700;
+  color: #f8fafc;
+  margin: 0 0 12px 0;
+  letter-spacing: -0.5px;
+}
+
+.build-card-desc {
+  font-size: 14.5px;
+  line-height: 1.65;
+  color: #94a3b8;
+  margin: 0;
+}
+
+@media screen and (max-width: 1024px) {
+  .what-i-build-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .what-i-build-section {
+    padding: 40px 0;
+  }
+  .what-i-build-title {
+    font-size: 32px;
+  }
+  .what-i-build-subtitle {
+    font-size: 15px;
+    margin-bottom: 32px;
+  }
+  .what-i-build-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  .build-card {
+    padding: 24px;
+  }
+}

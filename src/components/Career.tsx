@@ -11,15 +11,7 @@ const experiences = [
       "Engineering robust Android applications (Kotlin, Jetpack Compose, MVVM, Room, Hilt) and responsive full-stack AI web platforms. Focused on high performance, clean architecture, and real-world deployment.",
   },
   {
-    title: "ET AI Hackathon Winner / Finalist",
-    organization: "AirPulse AI Platform",
-    period: "NATIONAL HACKATHON",
-    icon: <FaTrophy />,
-    description:
-      "Designed and built AirPulse AI—an intelligent urban air quality forecasting & analytics engine delivering real-time AQI prediction models, ward-level heatmaps, and AI recommendations.",
-  },
-  {
-    title: "SEBI Hackathon Participant",
+    title: "SEBI Hackathon Finalist",
     organization: "BrokerMint Fintech Innovation",
     period: "NATIONAL HACKATHON",
     icon: <FaTrophy />,
@@ -43,7 +35,7 @@ const Career = () => {
       
       <div className="career-container">
         <h2 className="career-title">
-          Experience & <span className="text-accent">Achievements</span>
+          Experience & <span className="text-accent">Background</span>
         </h2>
         <p className="career-subtitle">
           Key milestones across software engineering, hackathons, and academic background.

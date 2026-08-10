@@ -93,9 +93,9 @@ const Navbar = () => {
             </ul>
 
             <a
-              href="/Devesh_Sakre_Resume.pdf"
+              href="/Devesh_Sakre_SDE_Resume_MAIN.pdf"
               target="_blank"
-              rel="noreferrer"
+              rel="noopener noreferrer"
               className="navbar-resume-btn"
               data-cursor="disable"
             >
@@ -127,9 +127,9 @@ const Navbar = () => {
             ))}
           </ul>
           <a
-            href="/Devesh_Sakre_Resume.pdf"
+            href="/Devesh_Sakre_SDE_Resume_MAIN.pdf"
             target="_blank"
-            rel="noreferrer"
+            rel="noopener noreferrer"
             className="mobile-resume-btn"
           >
             Download Resume
@@ -138,7 +138,6 @@ const Navbar = () => {
       </header>
 
       <div className="landing-circle1"></div>
-      <div className="landing-circle2"></div>
       <div className="nav-fade"></div>
     </>
   );

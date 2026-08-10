@@ -1,11 +1,28 @@
-import { PropsWithChildren } from "react";
+import { PropsWithChildren, useState, useEffect } from "react";
 import { FiArrowDownRight, FiFileText } from "react-icons/fi";
 import { HiOutlineSparkles } from "react-icons/hi2";
 import { FaGithub, FaLinkedinIn, FaEnvelope } from "react-icons/fa6";
 import EarthVisual from "./EarthVisual";
 import "./styles/Landing.css";
 
+const roles = ["Software Developer", "Android Developer", "AI/ML Enthusiast"];
+
 const Landing = ({ children }: PropsWithChildren) => {
+  const [roleIndex, setRoleIndex] = useState(0);
+  const [isFading, setIsFading] = useState(false);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setIsFading(true);
+      setTimeout(() => {
+        setRoleIndex((prevIndex) => (prevIndex + 1) % roles.length);
+        setIsFading(false);
+      }, 300);
+    }, 3000);
+
+    return () => clearInterval(interval);
+  }, []);
+
   const scrollToSection = (id: string) => {
     const element = document.querySelector(id);
     if (element) {
@@ -24,14 +41,16 @@ const Landing = ({ children }: PropsWithChildren) => {
               <span>Computer Science Engineer</span>
             </div>
 
-            <h3 className="hero-greeting">Hi, I'm Devesh</h3>
+            <h3 className="hero-greeting">Hi, I'm</h3>
 
             <h1 className="hero-title">
               Devesh <span className="hero-title-accent">Sakre</span>
             </h1>
 
             <h2 className="hero-role">
-              <span className="role-gradient">Software Developer</span>
+              <span className={`role-gradient ${isFading ? "fade-out" : "fade-in"}`}>
+                {roles[roleIndex]}
+              </span>
             </h2>
 
             <p className="hero-description">
@@ -63,9 +82,9 @@ const Landing = ({ children }: PropsWithChildren) => {
             {/* Social Links Row */}
             <div className="hero-social-row">
               <a
-                href="https://github.com/devsakre"
+                href="https://github.com/DeveshSakre"
                 target="_blank"
-                rel="noreferrer"
+                rel="noopener noreferrer"
                 className="hero-social-link"
                 data-cursor="disable"
                 aria-label="GitHub Profile"
@@ -75,9 +94,9 @@ const Landing = ({ children }: PropsWithChildren) => {
               </a>
 
               <a
-                href="https://linkedin.com/in/deveshsakre"
+                href="https://www.linkedin.com/in/devesh-sakre-8972542b7/"
                 target="_blank"
-                rel="noreferrer"
+                rel="noopener noreferrer"
                 className="hero-social-link"
                 data-cursor="disable"
                 aria-label="LinkedIn Profile"
