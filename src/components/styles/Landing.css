@@ -249,7 +249,7 @@
 @media screen and (max-width: 992px) {
   .hero-grid {
     grid-template-columns: 1fr;
-    gap: 32px;
+    gap: 28px;
   }
   .hero-title {
     font-size: 44px;
@@ -259,43 +259,63 @@
   }
   .hero-visual-side {
     height: 360px;
+    width: 100%;
+    max-width: 100%;
+    overflow: hidden;
   }
 }
 
 @media screen and (max-width: 480px) {
   .landing-container {
-    padding-top: 90px;
-    padding-bottom: 40px;
+    padding-top: 84px;
+    padding-bottom: 32px;
+    width: 100%;
+  }
+  .hero-badge {
+    font-size: 12px;
+    padding: 5px 12px;
+    max-width: 100%;
   }
   .hero-title {
-    font-size: 36px;
+    font-size: clamp(28px, 8vw, 36px);
     letter-spacing: -1px;
+    word-break: break-word;
   }
   .hero-role {
-    font-size: 22px;
+    font-size: 20px;
+    min-height: 32px;
   }
   .hero-greeting {
-    font-size: 18px;
+    font-size: 17px;
   }
   .hero-description {
-    font-size: 15px;
+    font-size: 14.5px;
+    line-height: 1.55;
     margin-bottom: 24px;
+    word-break: break-word;
   }
   .hero-cta-group {
-    gap: 12px;
+    gap: 10px;
     width: 100%;
     margin-bottom: 24px;
   }
   .hero-btn {
-    padding: 12px 20px;
-    font-size: 14px;
+    padding: 12px 18px;
+    font-size: 13.5px;
+    width: 100%;
+    justify-content: center;
+    box-sizing: border-box;
   }
   .hero-social-row {
-    gap: 16px;
+    gap: 12px 16px;
     flex-wrap: wrap;
     margin-bottom: 20px;
+    width: 100%;
   }
   .hero-visual-side {
-    height: 310px;
+    height: 280px;
+    width: 100%;
+    max-width: 100%;
+    overflow: hidden;
   }
 }

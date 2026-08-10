@@ -94,23 +94,40 @@
 @media screen and (max-width: 768px) {
   .career-timeline-wrapper {
     padding-left: 0;
+    width: 100%;
   }
   .timeline-line {
     display: none;
   }
   .career-cards-list {
     grid-template-columns: 1fr;
+    gap: 16px;
+    width: 100%;
   }
   .career-title {
     font-size: 32px;
+  }
+  .career-card {
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
   }
 }
 
 @media screen and (max-width: 480px) {
   .career-title {
-    font-size: 28px;
+    font-size: clamp(24px, 7vw, 28px);
   }
   .career-card {
-    padding: 20px;
+    padding: 18px 14px;
+    border-radius: 16px;
+  }
+  .career-card-title {
+    font-size: 18px;
+  }
+  .career-card-desc {
+    font-size: 13.5px;
+    word-break: break-word;
+    overflow-wrap: break-word;
   }
 }

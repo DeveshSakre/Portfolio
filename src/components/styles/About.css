@@ -131,27 +131,47 @@
     font-size: 28px;
   }
   .about-title-rotating-wrapper {
-    min-height: 38px;
+    min-height: auto;
+    overflow: visible;
+  }
+  .about-title-rotating {
+    white-space: normal;
+    word-break: break-word;
   }
   .about-grid {
     grid-template-columns: 1fr;
+    gap: 20px;
   }
   .about-highlights-grid {
     grid-template-columns: 1fr;
+    gap: 12px;
+  }
+  .glass-card {
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
   }
 }
 
 @media screen and (max-width: 480px) {
   .about-heading {
-    font-size: 22px;
+    font-size: clamp(20px, 6vw, 24px);
   }
-  .about-title-rotating-wrapper {
-    min-height: 30px;
+  .about-para {
+    font-size: 14.5px;
+    line-height: 1.6;
+    word-break: break-word;
+    overflow-wrap: break-word;
   }
   .glass-card {
-    padding: 20px;
+    padding: 18px 14px;
+    border-radius: 16px;
   }
   .highlight-item {
-    padding: 16px;
+    padding: 16px 14px;
+    border-radius: 14px;
+  }
+  .highlight-item h4 {
+    font-size: 15.5px;
   }
 }

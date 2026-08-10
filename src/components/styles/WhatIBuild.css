@@ -89,20 +89,43 @@
 
 @media screen and (max-width: 768px) {
   .what-i-build-section {
-    padding: 40px 0;
+    padding: 24px 0;
   }
   .what-i-build-title {
     font-size: 32px;
   }
   .what-i-build-subtitle {
     font-size: 15px;
-    margin-bottom: 32px;
+    margin-bottom: 24px;
   }
   .what-i-build-grid {
     grid-template-columns: 1fr;
-    gap: 20px;
+    gap: 16px;
+    width: 100%;
   }
   .build-card {
     padding: 24px;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .what-i-build-title {
+    font-size: clamp(24px, 7vw, 28px);
+  }
+  .build-card {
+    padding: 18px 14px;
+    border-radius: 16px;
+  }
+  .build-card-title {
+    font-size: 19px;
+  }
+  .build-card-desc {
+    font-size: 13.5px;
+    line-height: 1.6;
+    word-break: break-word;
+    overflow-wrap: break-word;
   }
 }

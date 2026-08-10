@@ -73,7 +73,6 @@ const Navbar = () => {
         <div className="navbar-container">
           <a href="#" className="navbar-title" data-cursor="disable">
             <span className="logo-text">DEVESH</span>
-            <span className="logo-dot">.</span>
           </a>
 
           {/* Desktop Nav */}
