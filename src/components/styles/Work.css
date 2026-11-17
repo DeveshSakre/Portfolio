@@ -81,6 +81,8 @@
 .text-green { color: #4ade80; }
 .text-violet { color: #c084fc; }
 .text-blue { color: #38bdf8; }
+.text-amber { color: #fbbf24; }
+.text-indigo { color: #818cf8; }
 
 .project-index {
   font-size: 16px;
@@ -188,7 +190,9 @@
 }
 
 .apk-btn:disabled,
-.apk-btn.disabled {
+.apk-btn.disabled,
+.screenshots-btn:disabled,
+.screenshots-btn.disabled {
   opacity: 0.5;
   cursor: not-allowed;
   background: rgba(148, 163, 184, 0.1);
@@ -197,21 +201,24 @@
   box-shadow: none;
 }
 
-.screenshots-btn {
+.screenshots-btn,
+.highlights-btn {
   background: rgba(56, 189, 248, 0.12);
   border: 1px solid rgba(56, 189, 248, 0.3);
   color: #38bdf8;
   cursor: pointer;
 }
 
-.screenshots-btn:hover {
+.screenshots-btn:not(:disabled):hover,
+.highlights-btn:not(:disabled):hover {
   background: rgba(56, 189, 248, 0.25);
   color: #38bdf8;
   border-color: #38bdf8;
   box-shadow: 0 0 15px rgba(56, 189, 248, 0.3);
 }
 
-.screenshots-btn.active {
+.screenshots-btn.active,
+.highlights-btn.active {
   background: #38bdf8;
   color: #070a12;
   border-color: #38bdf8;

@@ -3,10 +3,16 @@ import {
   SiAndroid, SiJetpackcompose, SiFirebase,
   SiFastapi, SiFlask, SiReact, SiVite, SiNodedotjs,
   SiScikitlearn, SiTensorflow, SiNumpy, SiPandas,
-  SiPostgresql, SiMysql, SiGit, SiGithub, SiDocker
+  SiPostgresql, SiMysql, SiGit, SiGithub, SiDocker,
+  SiPytorch, SiOpencv, SiLangchain
 } from "react-icons/si";
 import { FaJava, FaDatabase } from "react-icons/fa";
-import { TbBrain, TbDeviceMobile, TbServer, TbCode } from "react-icons/tb";
+import {
+  TbBrain, TbDeviceMobile, TbServer, TbCode, TbEye, TbSparkles,
+  TbChartLine, TbChartDots3, TbLayersIntersect, TbTransform,
+  TbTimeline, TbGraph, TbTextRecognition, TbMessageChatbot,
+  TbDatabaseSearch, TbVector, TbDatabase
+} from "react-icons/tb";
 import "./styles/Skills.css";
 
 const skillCategories = [
@@ -36,18 +42,6 @@ const skillCategories = [
     ],
   },
   {
-    title: "Backend & Web",
-    icon: <TbServer className="category-icon text-blue" />,
-    skills: [
-      { name: "FastAPI", icon: <SiFastapi /> },
-      { name: "Flask", icon: <SiFlask /> },
-      { name: "React", icon: <SiReact /> },
-      { name: "Vite", icon: <SiVite /> },
-      { name: "Node.js", icon: <SiNodedotjs /> },
-      { name: "REST APIs", icon: <TbServer /> },
-    ],
-  },
-  {
     title: "Machine Learning & AI",
     icon: <TbBrain className="category-icon text-violet" />,
     skills: [
@@ -57,6 +51,34 @@ const skillCategories = [
       { name: "LSTM Networks", icon: <TbBrain /> },
       { name: "NumPy", icon: <SiNumpy /> },
       { name: "Pandas", icon: <SiPandas /> },
+      { name: "Matplotlib", icon: <TbChartLine /> },
+      { name: "Seaborn", icon: <TbChartDots3 /> },
+    ],
+  },
+  {
+    title: "Deep Learning & Computer Vision",
+    icon: <TbEye className="category-icon text-indigo" />,
+    skills: [
+      { name: "PyTorch", icon: <SiPytorch /> },
+      { name: "TensorFlow", icon: <SiTensorflow /> },
+      { name: "CNNs", icon: <TbLayersIntersect /> },
+      { name: "Transfer Learning", icon: <TbTransform /> },
+      { name: "MobileNetV3", icon: <TbDeviceMobile /> },
+      { name: "Temporal Convolutional Networks (TCN)", icon: <TbTimeline /> },
+      { name: "Graph Attention Networks (GAT)", icon: <TbGraph /> },
+      { name: "OpenCV", icon: <SiOpencv /> },
+      { name: "Tesseract OCR", icon: <TbTextRecognition /> },
+    ],
+  },
+  {
+    title: "Generative AI & LLMs",
+    icon: <TbSparkles className="category-icon text-rose" />,
+    skills: [
+      { name: "LLMs", icon: <TbMessageChatbot /> },
+      { name: "Retrieval-Augmented Generation (RAG)", icon: <TbDatabaseSearch /> },
+      { name: "LangChain", icon: <SiLangchain /> },
+      { name: "Embeddings", icon: <TbVector /> },
+      { name: "Vector Databases", icon: <TbDatabase /> },
     ],
   },
   {
@@ -68,6 +90,18 @@ const skillCategories = [
       { name: "Git", icon: <SiGit /> },
       { name: "GitHub", icon: <SiGithub /> },
       { name: "Docker", icon: <SiDocker /> },
+    ],
+  },
+  {
+    title: "Backend & Web",
+    icon: <TbServer className="category-icon text-blue" />,
+    skills: [
+      { name: "FastAPI", icon: <SiFastapi /> },
+      { name: "Flask", icon: <SiFlask /> },
+      { name: "React", icon: <SiReact /> },
+      { name: "Vite", icon: <SiVite /> },
+      { name: "Node.js", icon: <SiNodedotjs /> },
+      { name: "REST APIs", icon: <TbServer /> },
     ],
   },
 ];

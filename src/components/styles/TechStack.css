@@ -51,7 +51,7 @@
 .tech-visualization-box {
   position: relative;
   width: 100%;
-  min-height: 440px;
+  min-height: 480px;
   padding: 32px;
   overflow: hidden;
   display: flex;
@@ -74,8 +74,9 @@
   z-index: 2;
   display: flex;
   flex-wrap: wrap;
-  gap: 12px;
+  gap: 10px;
   margin-top: auto;
+  padding-top: 28px;
   pointer-events: none;
 }
 
@@ -83,17 +84,17 @@
   pointer-events: auto;
   display: inline-flex;
   align-items: center;
-  gap: 10px;
-  padding: 10px 18px;
-  border-radius: 12px;
+  gap: 8px;
+  padding: 8px 14px;
+  border-radius: 10px;
   background: rgba(7, 10, 18, 0.75);
   border: 1px solid rgba(56, 189, 248, 0.15);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   color: #f1f5f9;
-  font-size: 14px;
+  font-size: 13px;
   font-weight: 600;
-  transition: all 0.3s ease;
+  transition: all 0.25s ease;
 }
 
 .tech-node-chip:hover {
@@ -104,7 +105,7 @@
 
 .tech-node-icon {
   display: flex;
-  font-size: 18px;
+  font-size: 16px;
 }
 
 @media screen and (max-width: 768px) {

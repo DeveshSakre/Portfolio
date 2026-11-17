@@ -1,9 +1,10 @@
 import { useState } from "react";
-import { FaGithub, FaWrench, FaStethoscope } from "react-icons/fa";
+import { FaGithub, FaWrench, FaStethoscope, FaLeaf, FaWater } from "react-icons/fa";
 import { TbDeviceMobile, TbActivity } from "react-icons/tb";
-import { FiImage, FiCheck, FiDownload, FiVideo } from "react-icons/fi";
+import { FiImage, FiCheck, FiDownload, FiVideo, FiExternalLink } from "react-icons/fi";
 import SpendWiseGallery from "./SpendWiseGallery";
 import MediLinkGallery from "./MediLinkGallery";
+import FreshIQGallery from "./FreshIQGallery";
 import "./styles/Work.css";
 
 const projects = [
@@ -64,6 +65,7 @@ const projects = [
     gradient: "linear-gradient(135deg, rgba(168, 85, 247, 0.12) 0%, rgba(15, 23, 42, 0.85) 100%)",
     borderColor: "rgba(168, 85, 247, 0.35)",
     github: "https://github.com/DeveshSakre/AirPulse-AI",
+    demo: "https://airpulse-frontend.onrender.com/",
     video: "https://drive.google.com/file/d/1FzxlGLQ1VAREwwxBjI3f1PBwnsdXu5qD/view?usp=sharing",
     hasGallery: false,
     technicalHighlights: [
@@ -98,6 +100,70 @@ const projects = [
       "Patient and doctor appointment workflows",
     ],
   },
+  {
+    title: "FreshIQ",
+    subtitle: "AI-Powered Food Freshness Prediction",
+    description:
+      "An AI-powered food freshness assessment system that uses computer vision to classify produce ripeness and estimate remaining shelf life. Supports avocado, mango, and banana classification, with remaining shelf-life estimation and storage What-If analysis for avocados.",
+    tech: [
+      "Python",
+      "PyTorch",
+      "MobileNetV3",
+      "FastAPI",
+      "Computer Vision",
+      "Machine Learning",
+    ],
+    category: "AI & Machine Learning",
+    icon: <FaLeaf className="project-icon text-amber" />,
+    gradient:
+      "linear-gradient(135deg, rgba(245, 158, 11, 0.12) 0%, rgba(15, 23, 42, 0.85) 100%)",
+    borderColor: "rgba(245, 158, 11, 0.35)",
+    github: "https://github.com/DeveshSakre/FreshIQ",
+    apk: "/projects/freshiq/freshiq.apk",
+    apkAvailable: false,
+    hasGallery: true,
+    galleryAvailable: false,
+    screenshotsFolder: "/projects/freshiq/",
+    hasHighlights: true,
+    highlightsTitle: "Key Results",
+    technicalHighlights: [
+      "Avocado classification accuracy: 66.15%",
+      "Mango classification accuracy: 95.64%",
+      "Banana classification accuracy: 73.21%",
+      "Remaining shelf-life estimation and storage What-If analysis for avocado.",
+    ],
+  },
+  {
+    title: "Flood Predictor",
+    subtitle: "ML-Based Flood Prediction for Ungauged Rivers",
+    description:
+      "A deep-learning-based river discharge forecasting system that predicts next-day river discharge for ungauged catchments using 64-day meteorological sequences and static catchment characteristics. Combines temporal modeling and graph-based learning to improve predictions across unseen river catchments.",
+    tech: [
+      "Python",
+      "PyTorch",
+      "TCN",
+      "RegionalTCN",
+      "Graph Attention Networks (GAT)",
+      "Quantile Regression",
+      "NumPy",
+      "Pandas",
+    ],
+    category: "AI & Machine Learning",
+    icon: <FaWater className="project-icon text-indigo" />,
+    gradient:
+      "linear-gradient(135deg, rgba(99, 102, 241, 0.12) 0%, rgba(15, 23, 42, 0.85) 100%)",
+    borderColor: "rgba(99, 102, 241, 0.35)",
+    github: "https://github.com/DeveshSakre/Flood-Predictor",
+    hasGallery: false,
+    hasHighlights: true,
+    highlightsTitle: "Key Results",
+    technicalHighlights: [
+      "Evaluated on 37 held-out catchments.",
+      "RegionalTCN median NSE: 0.2072.",
+      "Baseline TCN median NSE: 0.1498.",
+      "Includes uncertainty estimation.",
+    ],
+  },
 ];
 
 const Work = () => {
@@ -124,6 +190,7 @@ const Work = () => {
             const isExpanded = expandedProject === project.title;
             const isSpendWise = project.title === "SpendWise";
             const isMediLink = project.title === "MediLink";
+            const isFreshIQ = project.title === "FreshIQ";
 
             return (
               <div
@@ -152,7 +219,7 @@ const Work = () => {
                     <div className="project-highlights-container">
                       <div className="highlights-header">
                         <FiCheck className="highlights-icon" />
-                        <span>Technical Highlights</span>
+                        <span>{project.highlightsTitle || "Technical Highlights"}</span>
                       </div>
                       <div className="highlights-grid">
                         {project.technicalHighlights.map((highlight, hIdx) => (
@@ -168,6 +235,7 @@ const Work = () => {
                   {/* Expandable App Screenshots Gallery */}
                   {isExpanded && isSpendWise && <SpendWiseGallery />}
                   {isExpanded && isMediLink && <MediLinkGallery />}
+                  {isExpanded && isFreshIQ && <FreshIQGallery />}
                 </div>
 
                 <div className="project-card-footer">
@@ -191,6 +259,29 @@ const Work = () => {
                         <FaGithub className="btn-btn-icon" />
                         <span>Code</span>
                       </a>
+                    )}
+                    {project.demo && (
+                      <a
+                        href={project.demo}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="project-btn demo-btn"
+                        data-cursor="disable"
+                      >
+                        <FiExternalLink className="btn-btn-icon" />
+                        <span>Live Demo</span>
+                      </a>
+                    )}
+                    {project.hasHighlights && (
+                      <button
+                        type="button"
+                        className={`project-btn highlights-btn ${isExpanded ? "active" : ""}`}
+                        onClick={() => toggleExpand(project.title)}
+                        data-cursor="disable"
+                      >
+                        <FiCheck className="btn-btn-icon" />
+                        <span>{isExpanded ? "Hide Results" : "Key Results"}</span>
+                      </button>
                     )}
                     {project.apk && (
                       project.apkAvailable ? (
@@ -230,16 +321,29 @@ const Work = () => {
                         <span>Video</span>
                       </a>
                     )}
-                    {!project.video && (
-                      <button
-                        type="button"
-                        className={`project-btn screenshots-btn ${isExpanded ? "active" : ""}`}
-                        onClick={() => toggleExpand(project.title)}
-                        data-cursor="disable"
-                      >
-                        <FiImage className="btn-btn-icon" />
-                        <span>{isExpanded ? "Hide Screenshots" : "Screenshots"}</span>
-                      </button>
+                    {(project.hasGallery || project.title === "LocalFix") && (
+                      project.galleryAvailable !== false ? (
+                        <button
+                          type="button"
+                          className={`project-btn screenshots-btn ${isExpanded ? "active" : ""}`}
+                          onClick={() => toggleExpand(project.title)}
+                          data-cursor="disable"
+                        >
+                          <FiImage className="btn-btn-icon" />
+                          <span>{isExpanded ? "Hide Screenshots" : "Screenshots"}</span>
+                        </button>
+                      ) : (
+                        <button
+                          type="button"
+                          disabled
+                          className="project-btn screenshots-btn disabled"
+                          title="Screenshots coming soon"
+                          data-cursor="disable"
+                        >
+                          <FiImage className="btn-btn-icon" />
+                          <span>Screenshots</span>
+                        </button>
+                      )
                     )}
                   </div>
                 </div>
